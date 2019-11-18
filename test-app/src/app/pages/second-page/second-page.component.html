@@ -1,0 +1,31 @@
+<h2>Данные</h2>
+<ul class="list-group">
+  <li class="list-group-item">
+    <span>ФИО:</span>
+    <span>{{tsumService.get('fio')}}</span>
+  </li>
+  <li class="list-group-item">
+    <span>Email:</span>
+    <span>{{tsumService.get('email')}}</span>
+  </li>
+  <li class="list-group-item">
+    <span>Пол:</span>
+    <span>{{this.tsumService.get('gender')}}</span>
+  </li>
+  <li class="list-group-item">
+    <span>День рождения:</span>
+    <span>{{tsumService.get('birthday') | date:'dd.MM.yyyy'}}</span>
+  </li>
+  <li class="list-group-item" *ngIf="!tsumService.isChild()">
+    <span>Семейное положение:</span>
+    <span>{{tsumService.get('status')}}</span>
+  </li>
+  <li class="list-group-item">
+    <span>Количество детей:</span>
+    <span>{{tsumService.get('childrenCount')}}</span>
+  </li>
+  <li class="list-group-item">
+    <span>Комментарий: </span>
+    <span>{{tsumService.get('comment')}}</span>
+  </li>
+</ul>
