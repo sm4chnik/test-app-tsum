@@ -10,7 +10,7 @@ export class SecondPageComponent implements OnInit {
 
   data;
 
-  constructor(private tsumService: TsumService) { }
+  constructor(public tsumService: TsumService) { }
 
   ngOnInit() {
     this.data = this.tsumService.getAll()

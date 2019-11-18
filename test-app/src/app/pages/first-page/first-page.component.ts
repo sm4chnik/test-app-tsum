@@ -14,7 +14,7 @@ export class FirstPageComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private tsumService: TsumService,
+    public tsumService: TsumService,
     private fb: FormBuilder,
     private router: Router) { }
 
