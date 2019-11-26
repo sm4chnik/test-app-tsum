@@ -1,6 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {TsumService} from "../../../services/tsum.service";
-import {untilDestroyed} from "ngx-take-until-destroy";
+import {Component, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -8,19 +6,8 @@ import {FormControl} from "@angular/forms";
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
-export class CommentComponent implements OnInit, OnDestroy {
+export class CommentComponent {
 
   @Input() comment: FormControl;
 
-  constructor(private tsumService: TsumService) {
-  }
-
-  ngOnInit(): void {
-    this.comment.valueChanges.pipe(
-    untilDestroyed(this)
-  ).subscribe(data => this.tsumService.set('comment', data));
-  }
-
-  ngOnDestroy(): void {
-  }
 }

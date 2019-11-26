@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {TsumService} from "../../../services/tsum.service";
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-gender',
@@ -11,10 +10,6 @@ export class GenderComponent {
 
   @Input() gender: FormControl;
 
-  constructor(private tsumService: TsumService) { }
-
-  radioChange(e) {
-    this.tsumService.set('gender', e.value);
-  }
+  @Input() genderError = false;
 
 }

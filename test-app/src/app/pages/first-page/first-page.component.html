@@ -4,30 +4,30 @@
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="goNext()">
-      <div>
-        <app-fio [fioFormControl]="form.controls.fio"></app-fio>
+      <div class="row">
+        <app-fio [viewError]="viewError" [fioFormControl]="form.controls.fio"></app-fio>
       </div>
-      <div>
-        <app-gender [gender]="form.controls.gender"></app-gender>
+      <div class="row">
+        <app-gender [genderError]="genderError" [gender]="form.controls.gender"></app-gender>
       </div>
-      <div>
-        <app-birthday [birthday]="form.controls.birthday"></app-birthday>
+      <div class="row">
+        <app-birthday [viewError]="viewError" [birthday]="form.controls.birthday"></app-birthday>
       </div>
-      <div *ngIf="!tsumService.isChild()">
-        <app-marital-status [status]="form.controls.status"></app-marital-status>
+      <div *ngIf="!tsumService.isChild(this.form.get('birthday').value)" class="row">
+        <app-marital-status [form]="form" [status]="form.controls.status"></app-marital-status>
       </div>
-      <div>
+      <div class="row">
         <app-children-count [childrenCount]="form.controls.childrenCount"></app-children-count>
       </div>
-      <div>
-        <app-email [email]="form.controls.email"></app-email>
+      <div class="row">
+        <app-email [viewError]="viewError" [email]="form.controls.email"></app-email>
       </div>
-      <div>
+      <div class="row">
         <app-comment [comment]="form.controls.comment"></app-comment>
       </div>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button [disabled]="checkForm()" type="submit" (click)="goNext()" >Проверить</button>
+    <button mat-button type="submit" (click)="goNext()" >Проверить</button>
   </mat-card-actions>
 </mat-card>

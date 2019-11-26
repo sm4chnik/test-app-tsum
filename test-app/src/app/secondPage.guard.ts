@@ -13,7 +13,7 @@ export class MyGuard implements CanActivate{
       this.tsumService.get('gender') &&
       this.tsumService.get('birthday') &&
       this.tsumService.get('email') &&
-      (!this.tsumService.isChild() && this.tsumService.get('status'))
+      (!this.tsumService.isChild(this.tsumService.get('birthday')) && this.tsumService.get('status'))
     ) {
       return true;
     }

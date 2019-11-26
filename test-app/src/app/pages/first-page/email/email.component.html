@@ -1,9 +1,9 @@
 <mat-form-field class="example-full-width">
   <input matInput placeholder="Email" [formControl]="email">
-  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-    Введите валидный email
-  </mat-error>
-  <mat-error *ngIf="email.hasError('required')">
-    Email обязательно для заполнения
-  </mat-error>
 </mat-form-field>
+<mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+  <strong>Введите валидный email</strong>
+</mat-error>
+<mat-error *ngIf="(email.hasError('required') && email.touched) || (viewError && email.untouched)">
+  <strong>Email обязательно для заполнения</strong>
+</mat-error>

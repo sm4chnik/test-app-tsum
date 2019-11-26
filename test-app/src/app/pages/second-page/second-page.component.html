@@ -16,7 +16,7 @@
     <span>День рождения:</span>
     <span>{{tsumService.get('birthday') | date:'dd.MM.yyyy'}}</span>
   </li>
-  <li class="list-group-item" *ngIf="!tsumService.isChild()">
+  <li class="list-group-item" *ngIf="!tsumService.isChild(tsumService.get('birthday'))">
     <span>Семейное положение:</span>
     <span>{{tsumService.get('status')}}</span>
   </li>

@@ -1,5 +1,8 @@
 <label>Выберите пол</label>
 <mat-radio-group aria-label="Выберите пол" [formControl]="gender">
-  <mat-radio-button  (change)="radioChange($event)" value="Женский">Женский</mat-radio-button>
-  <mat-radio-button  (change)="radioChange($event)" value="Мужской">Мужской</mat-radio-button>
+  <mat-radio-button value="Женский">Женский</mat-radio-button>
+  <mat-radio-button value="Мужской">Мужской</mat-radio-button>
 </mat-radio-group>
+<mat-error *ngIf="genderError">
+  <strong>Пол обязателен для заполнения</strong>
+</mat-error>

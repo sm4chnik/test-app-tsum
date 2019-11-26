@@ -1,10 +1,9 @@
-
 <mat-form-field class="example-full-width">
   <input matInput placeholder="ФИО" [formControl]="fioFormControl">
-  <mat-error *ngIf="fioFormControl.hasError('validFIO') && !fioFormControl.hasError('required')">
-    ФИО не может состоять из одного слова
-  </mat-error>
-  <mat-error *ngIf="fioFormControl.hasError('required')">
-    <strong>ФИО обязательно для заполнения</strong>
-  </mat-error>
 </mat-form-field>
+<mat-error *ngIf="fioFormControl.hasError('validFIO') && !fioFormControl.hasError('required')  && fioFormControl.touched">
+  <strong>ФИО не может состоять из одного слова</strong>
+</mat-error>
+<mat-error *ngIf="(fioFormControl.hasError('required') && fioFormControl.touched) || (viewError && fioFormControl.untouched)" >
+  <strong>ФИО обязательно для заполнения</strong>
+</mat-error>

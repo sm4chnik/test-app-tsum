@@ -1,7 +1,7 @@
-<div class="row">
-  <mat-form-field>
+<div class="col">
+  <mat-form-field class="row">
     <input  class="col" type="number" min="0" matInput placeholder="Количество детей" [formControl]="childrenCount">
   </mat-form-field>
-  <button mat-button type="button" (click)="changeCount(-1)">-</button>
-  <button mat-button type="button" (click)="changeCount(1)">+</button>
+  <button mat-raised-button color="accent" type="button" (click)="changeCount(-1)">-</button>
+  <button mat-raised-button color="primary" type="button" (click)="changeCount(1)">+</button>
 </div>

@@ -27,8 +27,8 @@ export class TsumService {
 
   constructor() { }
 
-  set(field, value) {
-    this.data[field] = value;
+  setData(data): void {
+    this.data = data;
   }
 
   get(field) {
@@ -39,8 +39,7 @@ export class TsumService {
     return this.data;
   }
 
-  isChild() {
-    const {birthday} = this.data
+  isChild(birthday): boolean{
     const oldDate = new Date();
     oldDate.setFullYear(oldDate.getFullYear() - 18);
     if (birthday === null || oldDate <= birthday){

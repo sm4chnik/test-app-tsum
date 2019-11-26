@@ -1,2 +1,5 @@
-<input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="День рождения" [ngModel]="date" (ngModelChange)="changeDate($event)">
+<input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="День рождения" [formControl]="birthday" [max]="max">
 <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+<mat-error *ngIf="(birthday.touched && birthday.errors) || (viewError && birthday.untouched)">
+  <strong>День Рождения обязателен для заполнения</strong>
+</mat-error>

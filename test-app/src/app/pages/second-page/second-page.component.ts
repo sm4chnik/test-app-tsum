@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TsumService} from "../../services/tsum.service";
+import {IData, TsumService} from "../../services/tsum.service";
 
 @Component({
   selector: 'app-second-page',
@@ -8,7 +8,7 @@ import {TsumService} from "../../services/tsum.service";
 })
 export class SecondPageComponent implements OnInit {
 
-  data;
+  data: IData;
 
   constructor(public tsumService: TsumService) { }
 

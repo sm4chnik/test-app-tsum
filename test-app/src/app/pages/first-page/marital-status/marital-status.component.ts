@@ -1,13 +1,14 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {TsumService} from "../../../services/tsum.service";
-import {FormControl} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
+import {untilDestroyed} from "ngx-take-until-destroy";
 
 @Component({
   selector: 'app-marital-status',
   templateUrl: './marital-status.component.html',
   styleUrls: ['./marital-status.component.css']
 })
-export class MaritalStatusComponent {
+export class MaritalStatusComponent implements OnInit, OnDestroy{
 
   statuses = [
     {value: '1', viewValue: 'Женат'},
@@ -17,20 +18,47 @@ export class MaritalStatusComponent {
   ];
 
   @Input() status: FormControl;
-  constructor(private tsumService: TsumService) { }
+
+  @Input() form: FormGroup;
+
+  constructor(public tsumService: TsumService) {}
+
+  ngOnInit(): void {
+    this.form.get('gender').valueChanges.pipe(
+      untilDestroyed(this)
+    ).subscribe(data => {
+      if (this.status.value === null) {
+        return;
+      }
+      if (data === 'Мужской' && this.status.value === '2') {
+        this.status.setValue(null)
+      }
+      if (data === 'Женский' && this.status.value === '1') {
+        this.status.setValue(null)
+      }
+    })
+  }
+
+  ngOnDestroy(): void {
+  }
 
   getStatuses() {
-    if (this.tsumService.get('gender') === 'Мужской') {
+    const gender = this.form.get('gender').value;
+    if (gender === 'Мужской') {
       return this.statuses.filter(item => item.value !== '2');
-    } else if (this.tsumService.get('gender') === 'Женский') {
+    } else if (gender === 'Женский') {
       return this.statuses.filter(item => item.value !== '1');
     } else {
       return this.statuses;
     }
   }
 
-  selectStatus(e) {
-    this.tsumService.set('status', this.statuses.find(item => item.value === e.value).viewValue);
+  haveError(): boolean {
+    if (this.status.touched && !this.tsumService.isChild(this.form.get('birthday').value && this.status.value === null)
+    ) {
+      return true;
+    }
+    return false;
   }
 
 }
