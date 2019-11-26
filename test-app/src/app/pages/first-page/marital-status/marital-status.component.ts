@@ -1,5 +1,4 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {TsumService} from "../../../services/tsum.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {untilDestroyed} from "ngx-take-until-destroy";
 
@@ -20,8 +19,6 @@ export class MaritalStatusComponent implements OnInit, OnDestroy{
   @Input() status: FormControl;
 
   @Input() form: FormGroup;
-
-  constructor(public tsumService: TsumService) {}
 
   ngOnInit(): void {
     this.form.get('gender').valueChanges.pipe(
@@ -51,14 +48,6 @@ export class MaritalStatusComponent implements OnInit, OnDestroy{
     } else {
       return this.statuses;
     }
-  }
-
-  haveError(): boolean {
-    if (this.status.touched && !this.tsumService.isChild(this.form.get('birthday').value && this.status.value === null)
-    ) {
-      return true;
-    }
-    return false;
   }
 
 }
